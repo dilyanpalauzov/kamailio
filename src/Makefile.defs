@@ -214,9 +214,9 @@ endif
 # is clarity on which require -ldl, add just enough ifeq to fix
 # systems known not to use it.
 ifeq ($(OS), netbsd)
-LIBDL=""
+LIBDL=
 else
-LIBDL="-ldl"
+LIBDL=
 endif
 
 ifeq ($(LIBSSL_SET_MUTEX_SHARED), 1)
@@ -535,17 +535,20 @@ endif
 endif
 
 LOCALBASE ?= /usr/local
+LOCALBASE =/home/d/chroot-kamailio
 
 # Doxygen directory
 doxygen_dir=doc/doxygen
-
+DESTDIR=/home/d/chroot-kamailio
 BASEDIR ?= $(DESTDIR)
+BASEDIR=/home/d/chroot-kamailio
 basedir = $(BASEDIR)
 RUNBASEDIR ?= $(DESTDIR)
 runbasedir = $(RUNBASEDIR)
 
 # install location
 PREFIX ?= $(LOCALBASE)
+PREFIX=
 prefix = $(PREFIX)
 # install path is $(basedir) $(prefix)
 # example:
@@ -931,8 +934,8 @@ ifeq ($(use_fast_lock), yes)
 	found_lock_method=yes
 endif
 
-CFLAGS=-g -pthread
-LDFLAGS=-g -pthread
+CFLAGS=-pthread --sysroot=/home/d/chroot-libc241 -I=/include -I/usr/include
+LDFLAGS= -pthread -Wl,-s --sysroot=/home/d/chroot-libc241 -L/home/d/chroot-libc241/lib -L/home/d/chroot-libc241/lib64
 C_INCLUDES=
 # setting CFLAGS
 ifeq ($(mode), release)
