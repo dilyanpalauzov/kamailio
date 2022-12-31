@@ -19,7 +19,7 @@ else
 	NAME=$(CUSTOM_NAME)
 endif
 
-readline_localpath=$(LOCALBASE)/include/readline/readline.h
+readline_localpath=/src/bash-5.1.8/lib/readline/readline.h
 readline_locations= /usr/include/readline/readline.h \
 					$(readline_localpath)
 
@@ -108,8 +108,8 @@ ifneq (,$(findstring opt, $(readline_path)))
 else
 
 ifeq ($(readline_path),$(readline_localpath))
-	DEFS+=-I$(LOCALBASE)/include
-	LIBS+=-L$(LOCALBASE)/lib
+	DEFS+=-I$(LOCALBASE)/include -I/src/bash-5.1.8/lib
+	LIBS+=-L$(LOCALBASE)/lib -L/src/chroot/bash/lib/readline/
 endif
 
 	DEFS+=-DUSE_READLINE
