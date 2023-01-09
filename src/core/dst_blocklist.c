@@ -611,8 +611,8 @@ inline static int _dst_blocklist_del(unsigned short hash, struct ip_addr *ip,
 
 /* frees all the expired entries until either there are no more of them
  *  or the total memory used is <= target (to free all of them use -1 for
- *  target)
- *  params:   target  - free expired entries until no more than target memory
+ *  targer?)
+ *  params:   target  - free expired entries until no more than taget? memory
  *                      is used  (use 0 to free all of them)
  *            delta   - consider an entry expired if it expires after delta
  *                      ticks from now

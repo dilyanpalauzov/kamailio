@@ -400,7 +400,7 @@ static int ospSetRpid(struct sip_msg *msg, osp_dest *dest)
  * param msg SIP message
  * param ignore1
  * param ignore2
- * return MODULE_RETURNCODE_TRUE calling number translated MODULE_RETURNCODE_FALSE without transaltion
+ * return MODULE_RETURNCODE_TRUE calling number translated MODULE_RETURNCODE_FALSE without transaltion?
  */
 int ospCheckTranslation(struct sip_msg *msg, char *ignore1, char *ignore2)
 {
