@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <sys/param.h> // MIN()
 
 #include "../../core/ut.h"
 #include "../../core/str.h"

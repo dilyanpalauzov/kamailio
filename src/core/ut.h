@@ -1052,15 +1052,7 @@ static inline int str_strcasecmp(const str *str1, const str *str2)
 		return strncasecmp(str1->s, str2->s, str1->len);
 }
 
-#ifndef MIN
-#define MIN(x, y) ((x) < (y) ? (x) : (y))
-#endif
-#ifndef MAX
-#define MAX(x, y) ((x) > (y) ? (x) : (y))
-#endif
-
-
-/* INTeger-TO-Buffer-STRing : convers an unsigned long to a string
+/* INTeger-TO-Buffer-STRing : convers an unsigned long to a string 
  * IMPORTANT: the provided buffer must be at least INT2STR_MAX_LEN size !! */
 static inline char *int2bstr(unsigned long l, char *s, int *len)
 {

@@ -49,7 +49,8 @@
 
 #include <stdio.h>	/* for snprintf() */
 #include <string.h> /* for memset() */
-#include <stdlib.h> /* For atoi() */
+#include <stdlib.h> /* for atoi() */
+#include <sys/param.h> /* for MIN() and MAX() */
 
 #include "../../core/pvar.h"
 #include "../../core/parser/parse_supported.h"
