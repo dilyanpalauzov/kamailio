@@ -6,6 +6,7 @@ auto_gen=
 NAME=app_lua.so
 
 LUALIB=lua
+LUAJIT=1
 
 ifeq ($(LUAJIT),)
 	ifeq ($(CROSS_COMPILE),)
@@ -81,9 +82,8 @@ else
 		DEFS+= -I/usr/include/luajit-2.1
 		LIBS = -lluajit-5.1
 	else
-		DEFS+= $(shell pkg-config --silence-errors --cflags luajit)
-		LIBS = $(shell pkg-config --silence-errors --libs luajit)
+		DEFS+= -I=/include/luajit-2.1
+		LIBS = $(shell pkgconf --with-path=/home/d/chroot-libc236/lib/pkgconfig/ --silence-errors --libs luajit)
 	endif
 endif
-
 include ../../Makefile.modules
