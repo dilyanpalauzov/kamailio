@@ -925,8 +925,8 @@ ifeq ($(use_fast_lock), yes)
 	found_lock_method=yes
 endif
 
-CFLAGS=-g --sysroot=/home/d/chroot-libc236 -I=/include -I/usr/include
-LDFLAGS=-Wl,--compress-debug-sections=zlib-gabi --sysroot=/home/d/chroot-libc236 -L/home/d/chroot-libc236/lib -L/home/d/chroot-libc236/lib64
+CFLAGS=--sysroot=/home/d/chroot-libc236 -I=/include -I/usr/include
+LDFLAGS=-Wl,-s --sysroot=/home/d/chroot-libc236 -L/home/d/chroot-libc236/lib -L/home/d/chroot-libc236/lib64
 C_INCLUDES=
 # setting CFLAGS
 ifeq ($(mode), release)
