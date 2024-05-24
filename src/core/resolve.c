@@ -1623,7 +1623,12 @@ struct hostent *no_naptr_srv_sip_resolvehost(
 			srv_name.s = tmp_srv;
 			srv_name.len = strlen(tmp_srv);
 #ifdef USE_DNS_CACHE
-			he = dns_srv_get_he(&srv_name, port, dns_flags);
+			if(dns_cache_init) {
+				he = dns_srv_get_he(&srv_name, port, dns_flags);
+			} else {
+				LM_WARN("USE_DNS_CACHE is defined but dns_cache_init=off\n");
+				he = srv_sip_resolvehost(&srv_name, 0, port, proto, 1, 0);
+			}
 #else
 			he = srv_sip_resolvehost(&srv_name, 0, port, proto, 1, 0);
 #endif
@@ -1660,6 +1665,7 @@ struct hostent *naptr_sip_resolvehost(
 	struct rdata *naptr_head;
 	char n_proto;
 	str srv_name;
+	str *name_copy;
 	naptr_bmp_t tried_bmp; /* tried bitmap */
 	char origproto = PROTO_NONE;
 
@@ -1704,7 +1710,14 @@ struct hostent *naptr_sip_resolvehost(
 	he = no_naptr_srv_sip_resolvehost(name, port, proto);
 	/* fallback all the way down to A/AAAA */
 	if(he == 0) {
-		he = dns_get_he(name, dns_flags);
+		if(dns_cache_init) {
+			he = dns_get_he(name, dns_flags);
+		} else {
+			/* We need a zero terminated char* */
+			shm_str_dup(name_copy, name);
+			he = _resolvehost(name_copy->s);
+			shm_free(name_copy);
+		}
 	}
 end:
 	if(naptr_head)
