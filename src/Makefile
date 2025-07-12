@@ -211,7 +211,8 @@ C_INSTALL_BIN=	# kamcmd is now installed by ctl
 # which utils know to install themselves and should be installed
 # along the core (list of utils directories)
 ifeq ($(FLAVOUR),kamailio)
-C_INSTALL_UTILS= ../utils/kamctl
+C_INSTALL_UTILS=
+#../utils/kamctl
 else
 C_INSTALL_UTILS=
 endif
